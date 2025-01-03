@@ -26,7 +26,9 @@ $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
 //PREPARED STATEMENTS
 $id = 1;
-$author = 'sanjo';
+$title = 'test title';
+$body = 'this is a newly inserted body';
+$author = 'sanjos';
 
 //Positional Parameters on the statement
 echo 'This is a Positional Parameter</br>';
@@ -75,3 +77,21 @@ echo 'body : '.$post['body'].'</br>';
 echo 'author : '.$post['author'].'</br>';
 echo 'is_published : '.$post['is_published'].'</br>';
 echo 'created_at : '.$post['created_at'].'</br></br>';
+
+// INSERT POST PDO (Done its Working, just Highlighted)
+// $sql = 'INSERT INTO post (title, body, author) VALUES (?, ?, ?)';
+// $stmnt = $pdo->prepare($sql);
+// $stmnt->execute([$title, $body, $author]);
+// echo 'POST INSERTED';
+
+//UPDATE POST PDO (Done its Working, just Highlighted)
+// $sql = 'UPDATE post SET title = ?, body = ?, author = ? WHERE id = 1';
+// $stmnt = $pdo->prepare($sql);
+// $stmnt->execute([$title, $body, $author]);
+// echo 'POST UPDATED';
+
+//DELETE POST PDO (Done its Working, just Highlighted)
+$sql = 'DELETE FROM post WHERE author = ?';
+$stmnt = $pdo->prepare($sql);
+$stmnt->execute([$author]);
+echo 'POST DELETED';
